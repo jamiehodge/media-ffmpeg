@@ -1,3 +1,5 @@
+require_relative "progress"
+
 module Media
   module FFMPEG
     class Progress

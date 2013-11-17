@@ -1,6 +1,4 @@
-require "media/process"
-
-require_relative "progress"
+require_relative "process"
 
 module Media
   module FFMPEG
@@ -10,16 +8,11 @@ module Media
 
       def initialize(command, options = {})
         @command = ["ffmpeg", "-y"] + Array(command)
-        @tracker = options.fetch(:tracker) { Progress }
       end
 
       def call
-        progress = tracker.new
-
-        Process.new(command).call do |data|
-          progress.parse(data) do |progress|
-            yield progress if block_given?
-          end
+        Process.new(command).call do |progress|
+          yield progress if block_given?
         end
       end
     end

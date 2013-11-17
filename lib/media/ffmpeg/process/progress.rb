@@ -10,7 +10,7 @@ module Media
           @time     = time
         end
 
-        def parse(str)
+        def parse(str, &block)
           str.split("\n").each do |line|
             d = Parser.new(line, DURATION)
             t = Parser.new(line, TIME)
@@ -18,7 +18,7 @@ module Media
             @duration = d.to_seconds if d.match?
             @time     = t.to_seconds if t.match? and t.to_seconds > @time
 
-            yield self if block_given? and t.match?
+            block.call(self) if t.match?
           end
         end
 

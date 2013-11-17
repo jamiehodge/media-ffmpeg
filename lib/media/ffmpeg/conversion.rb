@@ -8,8 +8,8 @@ module Media
 
       attr_reader :command, :tracker
 
-      def initialize(command = [], options = {})
-        @command = ["ffmpeg", "-y", *command]
+      def initialize(command, options = {})
+        @command = ["ffmpeg", "-y"] + Array(command)
         @tracker = options.fetch(:tracker) { Progress }
       end
 

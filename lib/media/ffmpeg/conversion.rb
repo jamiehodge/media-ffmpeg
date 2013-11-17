@@ -1,5 +1,7 @@
 require "media/process"
 
+require_relative "progress"
+
 module Media
   module FFMPEG
     class Conversion

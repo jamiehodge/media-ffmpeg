@@ -24,7 +24,7 @@ module Media
 
         def to_f
           return 0.0 if duration == 0
-          [time / duration, 1.0].min
+          [time / duration, 1.0].min.round(2)
         end
 
         def to_s

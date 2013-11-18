@@ -14,7 +14,7 @@ module Media
         alias read  buffer
 
         def handle_read(length = 4096)
-          io.read_nonblock(length).tap {|data| buffer << data}
+          io.read_nonblock(length).tap {|data| buffer << data }
         rescue IO::WaitReadable, EOFError, Errno::ECONNRESET
           buffer
         end

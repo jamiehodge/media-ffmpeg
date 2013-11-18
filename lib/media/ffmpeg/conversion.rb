@@ -10,6 +10,10 @@ module Media
         @command = Array(command)
       end
 
+      def self.call(*args, &block)
+        new(*args).call(&block)
+      end
+
       def call
         Process.new(command).call do |progress|
           yield progress if block_given?
